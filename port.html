@@ -1,0 +1,517 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sivaganga KM - ML Engineer & Developer</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        window.process = { env: { NODE_ENV: 'production' } };
+    </script>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap');
+        
+        * {
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            background: #0a0a0a;
+            color: #fff;
+            overflow-x: hidden;
+        }
+        
+        .gradient-text {
+            background: linear-gradient(135deg, #60a5fa 0%, #3b82f6 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+        
+        .status-badge {
+            background: rgba(34, 197, 94, 0.1);
+            border: 1px solid rgba(34, 197, 94, 0.3);
+            color: #22c55e;
+            padding: 6px 16px;
+            border-radius: 20px;
+            font-size: 13px;
+            font-weight: 600;
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+        }
+        
+        .status-dot {
+            width: 6px;
+            height: 6px;
+            background: #22c55e;
+            border-radius: 50%;
+            animation: pulse 2s infinite;
+        }
+        
+        @keyframes pulse {
+            0%, 100% { opacity: 1; }
+            50% { opacity: 0.4; }
+        }
+        
+        .card-dark {
+            background: #111111;
+            border: 1px solid #1f1f1f;
+            border-radius: 16px;
+            transition: all 0.3s ease;
+        }
+        
+        .card-dark:hover {
+            border-color: #3b82f6;
+            transform: translateY(-2px);
+        }
+        
+        .btn-primary {
+            background: #fff;
+            color: #0a0a0a;
+            padding: 14px 32px;
+            border-radius: 12px;
+            font-weight: 700;
+            border: none;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            text-decoration: none;
+        }
+        
+        .btn-primary:hover {
+            background: #e5e5e5;
+            transform: translateY(-2px);
+        }
+        
+        .btn-secondary {
+            background: transparent;
+            color: #fff;
+            padding: 14px 32px;
+            border-radius: 12px;
+            font-weight: 700;
+            border: 1px solid #333;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            text-decoration: none;
+        }
+        
+        .btn-secondary:hover {
+            border-color: #3b82f6;
+            background: rgba(59, 130, 246, 0.1);
+        }
+        
+        .tech-tag {
+            background: rgba(59, 130, 246, 0.1);
+            border: 1px solid rgba(59, 130, 246, 0.2);
+            color: #60a5fa;
+            padding: 8px 16px;
+            border-radius: 8px;
+            font-size: 14px;
+            font-weight: 600;
+        }
+        
+        .project-card {
+            background: #111111;
+            border: 1px solid #1f1f1f;
+            border-radius: 20px;
+            padding: 32px;
+            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+            position: relative;
+            overflow: hidden;
+            display: block;
+            text-decoration: none;
+            color: inherit;
+        }
+        
+        .project-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 3px;
+            background: linear-gradient(90deg, #3b82f6, #60a5fa);
+            transform: scaleX(0);
+            transition: transform 0.4s ease;
+        }
+        
+        .project-card:hover::before {
+            transform: scaleX(1);
+        }
+        
+        .project-card:hover {
+            border-color: #3b82f6;
+            transform: translateY(-8px);
+        }
+        
+        .stat-number {
+            font-size: 3rem;
+            font-weight: 900;
+            line-height: 1;
+            color: #fff;
+        }
+        
+        .stat-label {
+            font-size: 0.875rem;
+            color: #737373;
+            font-weight: 500;
+            margin-top: 8px;
+        }
+        
+        .section-title {
+            font-size: 2.5rem;
+            font-weight: 900;
+            margin-bottom: 1rem;
+        }
+        
+        nav {
+            background: rgba(10, 10, 10, 0.8);
+            backdrop-filter: blur(10px);
+            border-bottom: 1px solid #1f1f1f;
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
+        
+        .social-icon {
+            width: 44px;
+            height: 44px;
+            border-radius: 12px;
+            background: #111111;
+            border: 1px solid #1f1f1f;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: all 0.3s ease;
+        }
+        
+        .social-icon:hover {
+            border-color: #3b82f6;
+            background: rgba(59, 130, 246, 0.1);
+            transform: translateY(-2px);
+        }
+        
+        @media (max-width: 768px) {
+            .section-title {
+                font-size: 2rem;
+            }
+            .stat-number {
+                font-size: 2rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    
+    <!-- Navigation -->
+    <nav>
+        <div class="max-w-7xl mx-auto px-6 py-4 flex justify-between items-center">
+            <div class="text-xl font-black">SK</div>
+            <div class="hidden md:flex gap-8 text-sm font-medium">
+                <a href="#about" class="text-gray-400 hover:text-white transition">About</a>
+                <a href="#experience" class="text-gray-400 hover:text-white transition">Experience</a>
+                <a href="#projects" class="text-gray-400 hover:text-white transition">Featured Work</a>
+                <a href="#contact" class="text-gray-400 hover:text-white transition">Contact</a>
+            </div>
+            <button id="mobileMenu" class="md:hidden text-white">
+                <svg width="24" height="24" fill="none" stroke="currentColor" stroke-width="2">
+                    <path d="M4 6h16M4 12h16M4 18h16"/>
+                </svg>
+            </button>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section class="max-w-7xl mx-auto px-6 py-20 md:py-32">
+        <div class="grid md:grid-cols-2 gap-12 items-center">
+            <div>
+                <div class="mb-6">
+                    <span class="status-badge">
+                        <span class="status-dot"></span>
+                        OPEN TO SWE + ML ROLES
+                    </span>
+                </div>
+                
+                <h1 class="text-5xl md:text-7xl font-black leading-tight mb-6">
+                    Building <span class="gradient-text">Intelligent Software</span> with ML + Engineering.
+                </h1>
+                
+                <p class="text-xl text-gray-400 mb-8 leading-relaxed max-w-xl">
+                    I build full-stack applications powered by machine learning. A <span class="text-white font-semibold">Software Engineer + ML Practitioner</span> creating end-to-end solutions from scalable backends to intelligent models.
+                </p>
+                
+                <div class="flex flex-wrap gap-4 mb-8">
+                    <a href="#projects" class="btn-primary">
+                        <svg width="20" height="20" fill="none" stroke="currentColor" stroke-width="2">
+                            <path d="M9 5l7 7-7 7"/>
+                        </svg>
+                        View Selected Work
+                    </a>
+                    <a href="https://github.com/shivakm876" target="_blank" class="btn-secondary">
+                        <svg width="20" height="20" fill="currentColor" viewBox="0 0 24 24">
+                            <path d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576 4.765-1.589 8.199-6.086 8.199-11.386 0-6.627-5.373-12-12-12z"/>
+                        </svg>
+                        GitHub
+                    </a>
+                </div>
+                
+                <div class="flex gap-4">
+                    <a href="https://linkedin.com/in/sivaganga-km-463a50261/" target="_blank" class="social-icon">
+                        <svg width="20" height="20" fill="currentColor" viewBox="0 0 24 24">
+                            <path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433c-1.144 0-2.063-.926-2.063-2.065 0-1.138.92-2.063 2.063-2.063 1.14 0 2.064.925 2.064 2.063 0 1.139-.925 2.065-2.064 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/>
+                        </svg>
+                    </a>
+                    <a href="mailto:sivagangakm@gmail.com" class="social-icon">
+                        <svg width="20" height="20" fill="none" stroke="currentColor" stroke-width="2">
+                            <path d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"/>
+                        </svg>
+                    </a>
+                </div>
+            </div>
+            
+            <!-- Stats Section -->
+            <div class="grid grid-cols-3 gap-6">
+                <div class="card-dark p-6 text-center">
+                    <div class="stat-number gradient-text">3+</div>
+                    <div class="stat-label">End-to-End ML Products</div>
+                </div>
+                <div class="card-dark p-6 text-center col-span-2">
+                    <div class="stat-number">Experience</div>
+                    <div class="stat-label">Internships & Research</div>
+                </div>
+                <div class="card-dark p-6 text-center col-span-3">
+                    <div class="stat-number">Focus</div>
+                    <div class="stat-label">Software Engineering + Machine Learning</div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- About Section -->
+    <section id="about" class="max-w-7xl mx-auto px-6 py-20">
+        <h2 class="section-title mb-12">Building at the Intersection of <span class="gradient-text">Software & ML</span></h2>
+        
+        <div class="grid md:grid-cols-2 gap-8">
+            <div class="card-dark p-8">
+                <h3 class="text-2xl font-bold mb-4">What I Do</h3>
+                <p class="text-gray-400 leading-relaxed mb-4">
+                    I'm a B.Tech Computer Science student at Amrita Vishwa Vidyapeetham, equally passionate about software engineering and machine learning. I build scalable applications and train intelligent models.
+                </p>
+                <p class="text-gray-400 leading-relaxed">
+                    From designing REST APIs and responsive frontends to training neural networks and deploying ML pipelines — I love the full spectrum. Published researcher with a <span class="text-blue-400 font-semibold">94.2% accuracy phishing detection system</span> accepted at ICCNT 2025, and experienced in building production web applications.
+                </p>
+            </div>
+            
+            <div class="card-dark p-8">
+                <h3 class="text-2xl font-bold mb-6">Core Skills</h3>
+                <div class="flex flex-wrap gap-3">
+                    <span class="tech-tag">Python</span>
+                    <span class="tech-tag">Machine Learning</span>
+                    <span class="tech-tag">Scikit-learn</span>
+                    <span class="tech-tag">TensorFlow</span>
+                    <span class="tech-tag">React.js</span>
+                    <span class="tech-tag">Next.js</span>
+                    <span class="tech-tag">Flask</span>
+                    <span class="tech-tag">PostgreSQL</span>
+                    <span class="tech-tag">Data Analytics</span>
+                    <span class="tech-tag">NLP</span>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Experience Section -->
+    <section id="experience" class="max-w-7xl mx-auto px-6 py-20">
+        <div class="mb-12">
+            <p class="text-sm text-gray-500 uppercase tracking-wider mb-2">THE JOURNEY</p>
+            <h2 class="section-title">Experience</h2>
+            <p class="text-gray-400 mt-4">My professional path in building software. Always learning, always shipping.</p>
+        </div>
+        
+        <div class="space-y-6">
+            <div class="card-dark p-8">
+                <div class="flex flex-wrap justify-between items-start mb-4">
+                    <div>
+                        <h3 class="text-2xl font-bold">Data Science Intern</h3>
+                        <p class="text-blue-400 font-semibold mt-1">Teachnook</p>
+                    </div>
+                    <div class="text-right text-gray-400">
+                        <p>Remote, India</p>
+                        <p class="text-sm">Aug 2024 – Sep 2024</p>
+                    </div>
+                </div>
+                <ul class="space-y-2 text-gray-400">
+                    <li>• Developed ML models achieving <span class="text-white font-semibold">90%+ accuracy</span> on equipment performance prediction</li>
+                    <li>• Performed extensive EDA to identify patterns and enhance feature selection workflows</li>
+                    <li>• Created data visualizations to support data-driven decision making</li>
+                </ul>
+            </div>
+            
+            <div class="card-dark p-8">
+                <div class="flex flex-wrap justify-between items-start mb-4">
+                    <div>
+                        <h3 class="text-2xl font-bold">Frontend Developer Intern</h3>
+                        <p class="text-blue-400 font-semibold mt-1">Extion Infotech</p>
+                    </div>
+                    <div class="text-right text-gray-400">
+                        <p>Remote, India</p>
+                        <p class="text-sm">Nov 2024 – Dec 2024</p>
+                    </div>
+                </div>
+                <ul class="space-y-2 text-gray-400">
+                    <li>• Built responsive e-commerce website improving mobile compatibility by <span class="text-white font-semibold">30%</span></li>
+                    <li>• Enhanced UI/UX through reusable components, increasing user engagement by <span class="text-white font-semibold">20%</span></li>
+                    <li>• Collaborated with design and QA teams for cross-browser compatibility</li>
+                </ul>
+            </div>
+        </div>
+    </section>
+
+    <!-- Projects Section -->
+    <section id="projects" class="max-w-7xl mx-auto px-6 py-20">
+        <h2 class="section-title mb-4">Featured Work</h2>
+        <p class="text-gray-400 mb-12 text-lg">Projects spanning software engineering, machine learning, and full-stack development</p>
+        
+        <div class="grid md:grid-cols-2 gap-8">
+            <a href="https://github.com/shivakm876/MEDI-ASSIT" target="_blank" class="project-card">
+                <div class="flex justify-between items-start mb-3">
+                    <h3 class="text-2xl font-bold">MediAssist</h3>
+                    <svg width="24" height="24" fill="currentColor" viewBox="0 0 24 24" class="text-gray-400">
+                        <path d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576 4.765-1.589 8.199-6.086 8.199-11.386 0-6.627-5.373-12-12-12z"/>
+                    </svg>
+                </div>
+                <p class="text-gray-400 mb-6 leading-relaxed">
+                    End-to-end AI health advisory platform predicting disease likelihood from symptoms with personalized lifestyle recommendations using modular ML pipeline and REST APIs.
+                </p>
+                <div class="flex flex-wrap gap-2">
+                    <span class="text-xs bg-blue-500/10 text-blue-400 px-3 py-1 rounded-full">Python</span>
+                    <span class="text-xs bg-blue-500/10 text-blue-400 px-3 py-1 rounded-full">Scikit-learn</span>
+                    <span class="text-xs bg-blue-500/10 text-blue-400 px-3 py-1 rounded-full">Flask</span>
+                    <span class="text-xs bg-blue-500/10 text-blue-400 px-3 py-1 rounded-full">Next.js</span>
+                </div>
+            </a>
+            
+            <a href="https://github.com/shivakm876/Sms-Spam-Detectionn" target="_blank" class="project-card">
+                <div class="flex justify-between items-start mb-3">
+                    <h3 class="text-2xl font-bold">SMS Spam Detection</h3>
+                    <svg width="24" height="24" fill="currentColor" viewBox="0 0 24 24" class="text-gray-400">
+                        <path d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576 4.765-1.589 8.199-6.086 8.199-11.386 0-6.627-5.373-12-12-12z"/>
+                    </svg>
+                </div>
+                <p class="text-gray-400 mb-6 leading-relaxed">
+                    ML-based text classification with complete NLP pipeline including preprocessing, TF-IDF extraction, and supervised model training achieving 96% F1-score.
+                </p>
+                <div class="flex flex-wrap gap-2">
+                    <span class="text-xs bg-blue-500/10 text-blue-400 px-3 py-1 rounded-full">Python</span>
+                    <span class="text-xs bg-blue-500/10 text-blue-400 px-3 py-1 rounded-full">Machine Learning</span>
+                    <span class="text-xs bg-blue-500/10 text-blue-400 px-3 py-1 rounded-full">NLP</span>
+                    <span class="text-xs bg-blue-500/10 text-blue-400 px-3 py-1 rounded-full">Text Classification</span>
+                    <span class="text-xs bg-blue-500/10 text-blue-400 px-3 py-1 rounded-full">Naive Bayes</span>
+                </div>
+            
+            <a href="https://github.com/shivakm876/ego-network-echo-chamber-risk-analysis" target="_blank" class="project-card">
+                <div class="flex justify-between items-start mb-3">
+                    <h3 class="text-2xl font-bold">Ego Network Echo Chamber Risk Analysis</h3>
+                    <svg width="24" height="24" fill="currentColor" viewBox="0 0 24 24" class="text-gray-400">
+                        <path d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576 4.765-1.589 8.199-6.086 8.199-11.386 0-6.627-5.373-12-12-12z"/>
+                    </svg>
+                </div>
+                <p class="text-gray-400 mb-6 leading-relaxed">
+                    Semantic–structural framework combining SBERT embeddings and graph analytics to study echo chamber risk in social media ego networks. Computed ego–alter similarity, community structure, and escape potential to identify echo chambers and echo breakers.
+                </p>
+                <div class="flex flex-wrap gap-2">
+                    <span class="text-xs bg-blue-500/10 text-blue-400 px-3 py-1 rounded-full">Python</span>
+                    <span class="text-xs bg-blue-500/10 text-blue-400 px-3 py-1 rounded-full">NLP</span>
+                    <span class="text-xs bg-blue-500/10 text-blue-400 px-3 py-1 rounded-full">Embeddings</span>
+                    <span class="text-xs bg-blue-500/10 text-blue-400 px-3 py-1 rounded-full">Graph Analytics</span>
+                </div>
+            </a>
+            
+            <a href="https://github.com/shivakm876/matrix-caliculator" target="_blank" class="project-card">
+                <div class="flex justify-between items-start mb-3">
+                    <h3 class="text-2xl font-bold">Matrix Calculator</h3>
+                    <svg width="24" height="24" fill="currentColor" viewBox="0 0 24 24" class="text-gray-400">
+                        <path d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576 4.765-1.589 8.199-6.086 8.199-11.386 0-6.627-5.373-12-12-12z"/>
+                    </svg>
+                </div>
+                <p class="text-gray-400 mb-6 leading-relaxed">
+                    Java desktop application for advanced matrix computations with Swing GUI supporting determinant, inverse, transpose, and multiplication operations.
+                </p>
+                <div class="flex flex-wrap gap-2">
+                    <span class="text-xs bg-blue-500/10 text-blue-400 px-3 py-1 rounded-full">Java</span>
+                    <span class="text-xs bg-blue-500/10 text-blue-400 px-3 py-1 rounded-full">Swing</span>
+                    <span class="text-xs bg-blue-500/10 text-blue-400 px-3 py-1 rounded-full">OOP</span>
+                </div>
+            </a>
+            
+            <a href="https://github.com/shivakm876" target="_blank" class="project-card">
+                <div class="flex justify-between items-start mb-3">
+                    <h3 class="text-2xl font-bold">Movie Booking Website</h3>
+                    <svg width="24" height="24" fill="currentColor" viewBox="0 0 24 24" class="text-gray-400">
+                        <path d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576 4.765-1.589 8.199-6.086 8.199-11.386 0-6.627-5.373-12-12-12z"/>
+                    </svg>
+                </div>
+                <p class="text-gray-400 mb-6 leading-relaxed">
+                    Fully responsive web-based movie booking platform with multi-page navigation, trailer integration, and dynamic seat selection using JavaScript.
+                </p>
+                <div class="flex flex-wrap gap-2">
+                    <span class="text-xs bg-blue-500/10 text-blue-400 px-3 py-1 rounded-full">HTML5</span>
+                    <span class="text-xs bg-blue-500/10 text-blue-400 px-3 py-1 rounded-full">CSS3</span>
+                    <span class="text-xs bg-blue-500/10 text-blue-400 px-3 py-1 rounded-full">JavaScript</span>
+                    <span class="text-xs bg-blue-500/10 text-blue-400 px-3 py-1 rounded-full">Bootstrap</span>
+                </div>
+            </a>
+        </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section id="contact" class="max-w-7xl mx-auto px-6 py-20">
+        <div class="card-dark p-12 text-center">
+            <h2 class="section-title mb-4">Let's Build Something</h2>
+            <p class="text-gray-400 mb-8 max-w-2xl mx-auto text-lg">
+                Open to software engineering and ML roles, research collaborations, and interesting projects. Let's create something impactful together.
+            </p>
+            <div class="flex flex-wrap justify-center gap-4">
+                <a href="mailto:sivagangakm@gmail.com" class="btn-primary">
+                    Get in Touch
+                    <svg width="20" height="20" fill="none" stroke="currentColor" stroke-width="2">
+                        <path d="M5 12h14m-7-7l7 7-7 7"/>
+                    </svg>
+                </a>
+                <a href="https://drive.google.com/uc?export=download&id=1hhqGhQgR5sMiqZNQBwwmlMsG7w_7el9W" class="btn-secondary" target="_blank">
+                    <svg width="20" height="20" fill="none" stroke="currentColor" stroke-width="2">
+                        <path d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-4l-4 4m0 0l-4-4m4 4V4"/>
+                    </svg>
+                    Download Resume
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="border-t border-gray-900 py-8 px-6 text-center text-gray-500">
+        <p>© 2025 Sivaganga KM. Built with precision.</p>
+    </footer>
+
+    <script>
+        // Smooth scroll
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                document.querySelector(this.getAttribute('href')).scrollIntoView({
+                    behavior: 'smooth'
+                });
+            });
+        });
+    </script>
+</body>
+</html>
