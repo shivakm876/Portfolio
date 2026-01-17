@@ -220,7 +220,8 @@
                 <a href="#about" class="text-gray-400 hover:text-white transition">About</a>
                 <a href="#experience" class="text-gray-400 hover:text-white transition">Experience</a>
                 <a href="#projects" class="text-gray-400 hover:text-white transition">Featured Work</a>
-                <a href="#contact" class="text-gray-400 hover:text-white transition">Contact</a>
+                <button onclick="openContactForm()" class="text-gray-400 hover:text-white transition">Contact</button>
+
             </div>
             <button id="mobileMenu" class="md:hidden text-white">
                 <svg width="24" height="24" fill="none" stroke="currentColor" stroke-width="2">
@@ -500,9 +501,10 @@
                 <a href="mailto:sivagangakm@gmail.com" class="btn-primary">
                     Shoot me an Email
                 </a>
-                <a href="https://drive.google.com/drive/u/0/folders/18M-c4kgJIMmDq0TrR08GniJxUPQnmGVo" class="btn-secondary" target="_blank">
-                    Use Contact Form
-                </a>
+                <button onclick="openContactForm()" class="btn-secondary">
+    Use Contact Form
+</button>
+
             </div>
         </div>
     </section>
@@ -529,5 +531,42 @@
             });
         });
     </script>
+
+    <script>
+function openContactForm(){
+    document.getElementById("contactModal").classList.remove("hidden");
+}
+function closeContactForm(){
+    document.getElementById("contactModal").classList.add("hidden");
+}
+</script>
+
 </body>
+
+<!-- Contact Form Modal -->
+<div id="contactModal" class="fixed inset-0 bg-black bg-opacity-80 backdrop-blur-sm z-50 hidden flex items-center justify-center p-6">
+    <div class="bg-[#111111] border border-[#1f1f1f] rounded-2xl max-w-2xl w-full p-8 relative">
+        <button onclick="closeContactForm()" class="absolute top-6 right-6 text-gray-400 hover:text-white">✕</button>
+
+        <h3 class="text-3xl font-bold mb-2">Get in Touch</h3>
+        <p class="text-gray-400 mb-6">Fill the form or contact me directly below</p>
+
+        <form action="https://formspree.io/f/xdkoorro" method="POST" class="space-y-4 mb-6">
+            <input type="text" name="name" placeholder="Your Name" required class="w-full p-3 bg-black border border-gray-700 rounded">
+            <input type="email" name="email" placeholder="Your Email" required class="w-full p-3 bg-black border border-gray-700 rounded">
+            <textarea name="message" placeholder="Your Message" required class="w-full p-3 bg-black border border-gray-700 rounded"></textarea>
+
+            <button type="submit" class="btn-primary w-full">Send Message</button>
+            <button type="button" onclick="closeContactForm()" class="btn-secondary w-full">Cancel</button>
+        </form>
+
+        <!-- Direct Contact -->
+        <div class="border-t border-gray-800 pt-4 text-gray-400 text-sm space-y-2">
+            <p><strong>Name:</strong> Sivaganga KM</p>
+            <p><strong>Email:</strong> <a href="mailto:sivagangakm@gmail.com" class="text-blue-400">sivagangakm@gmail.com</a></p>
+            <p><strong>Phone:</strong> <a href="tel:9446887484" class="text-blue-400">+91 94468 87484</a></p>
+        </div>
+    </div>
+</div>
+
 </html>
